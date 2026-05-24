@@ -1,5 +1,9 @@
 apply plugin: 'java-library'
 
+ext {
+    mapVinaArtifactId = 'android-sdk-geojson'
+}
+
 dependencies {
   // Gson
   api libs.gson

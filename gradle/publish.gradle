@@ -3,7 +3,6 @@ apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
 apply from: file("${rootDir}/gradle/artifact-settings.gradle")
-apply from: file("${rootDir}/gradle/publish-root.gradle")
 
 afterEvaluate {
     publishing {
@@ -40,7 +39,7 @@ afterEvaluate {
                         developer {
                             id = project.ext.mapVinaDeveloperId
                             name = project.ext.mapVinaDeveloperName
-                            email = 'mapvina@mapvina.com'
+                            email = 'support@mapvina.com'
                         }
                     }
                     scm {
@@ -54,11 +53,11 @@ afterEvaluate {
 
         repositories {
             maven {
-                name = "GitHubPackages"
-                url = "https://maven.pkg.github.com/mapvina.com/mapvina-java"
+                name = "central"
+                url = uri("https://central.sonatype.com/api/v1/publisher")
                 credentials {
-                    username = System.getenv("GITHUB_ACTOR")
-                    password = System.getenv("GITHUB_TOKEN")
+                    username = project.findProperty("mavenCentralUsername") ?: System.getenv("MAVEN_CENTRAL_USERNAME")
+                    password = project.findProperty("mavenCentralPassword") ?: System.getenv("MAVEN_CENTRAL_PASSWORD")
                 }
             }
         }
@@ -71,6 +70,7 @@ tasks.withType(Javadoc) {
     options.addStringOption('charset', 'UTF-8')
 }
 
-signing {
-    sign publishing.publications
-}
+// Temporarily disable signing
+// signing {
+//     sign publishing.publications
+// }

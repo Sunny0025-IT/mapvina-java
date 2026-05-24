@@ -1,6 +1,6 @@
 ext {
     mapVinaArtifactGroupId = 'io.github.mapvina'
-    mapVinaArtifactId = project.hasProperty('POM_ARTIFACT_ID') ? project.property('POM_ARTIFACT_ID') : System.getenv('POM_ARTIFACT_ID')
+    mapVinaArtifactId = project.hasProperty('mapVinaArtifactId') ? project.property('mapVinaArtifactId') : (project.hasProperty('POM_ARTIFACT_ID') ? project.property('POM_ARTIFACT_ID') : System.getenv('POM_ARTIFACT_ID'))
     mapVinaArtifactTitle = 'MapVina Android Java Utilities'
     mapVinaArtifactDescription = project.hasProperty('POM_DESCRIPTION') ? project.property('POM_DESCRIPTION') : System.getenv('POM_DESCRIPTION')
     mapVinaDeveloperName = 'MapVina'

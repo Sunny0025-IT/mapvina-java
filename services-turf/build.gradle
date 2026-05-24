@@ -1,5 +1,9 @@
 apply plugin: 'java-library'
 
+ext {
+    mapVinaArtifactId = 'android-sdk-turf'
+}
+
 dependencies {
   api project(":services-geojson")
 
